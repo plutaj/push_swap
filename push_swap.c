@@ -3,74 +3,81 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 18:45:03 by jozefpluta        #+#    #+#             */
-/*   Updated: 2024/10/14 20:16:24 by jozefpluta       ###   ########.fr       */
+/*   Updated: 2024/10/17 19:16:50 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "utils.h"
 
-Node *head = NULL;
+t_node	*stack_a = NULL;
 
-Node *add_node(int data)
+t_node	*add_node(int data)
 {
-    Node *new;
-    if (head == NULL)
-    {
-        new = malloc(sizeof(Node));
-        if (new == NULL)
-            return (NULL);
-        new->data = data;
-        new->i = 0;
-        head = new;
-        new->next = NULL;
-    }
-    else
-    {
-        new = malloc(sizeof(Node));
-        if (new == NULL)
-            return (NULL);
-        new->i = 0;
-        new->data = data;
-        head->i++;
-        new->next = head;
-        head = new;
-    }
-    return (new);
+	t_node	*new;
+
+	if (stack_a == NULL)
+	{
+		new = malloc(sizeof(t_node));
+		if (new == NULL)
+			return (NULL);
+		new->data = data;
+		new->i = 0;
+		stack_a = new;
+		new->next = NULL;
+	}
+	else
+	{
+		new = malloc(sizeof(t_node));
+		if (new == NULL)
+			return (NULL);
+		new->i = 0;
+		new->data = data;
+		stack_a->i++;
+		new->next = stack_a;
+		stack_a = new;
+	}
+	return (new);
 }
 
-void free_list(Node *head)
+void	free_list(t_node *stack_a)
 {
-    Node *current = head;
-    Node *next_node;
+	t_node	*current;
+	t_node	*next_node;
 
-    while (current != NULL) {
-        next_node = current->next;
-        free(current);
-        current = next_node;
-    }
+	current = stack_a;
+	while (current != NULL)
+	{
+		next_node = current->next;
+		free(current);
+		current = next_node;
+	}
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    int i = 1;
-    if (argc == 1)
-        return (0);
-    else 
-        while (i < argc)
-        {
-           add_node(ft_atoi(argv[i])); 
-        }
-    Node *current = head;
-    while (current != NULL)
-    {
-        printf("%d, ", current->data);
-        current = current->next;
-    }
-    free_list(head);
-    return (0);
+	int i = 1;
+	if (argc == 1)
+		print_error();
+	else
+		while (i < argc)
+		{
+			add_node(ft_atoi(argv[i]));
+		}
+	t_node *current = stack_a;
+	while (current != NULL)
+	{
+		printf("%d, ", current->data);
+		current = current->next;
+	}
+	free_list(stack_a);
+	return (0);
+}
+
+void print_error()
+{
+	write(1, "Error", 5);
+	exit(1);
 }
