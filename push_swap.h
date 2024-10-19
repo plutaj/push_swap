@@ -20,5 +20,6 @@ void			print_error();
 t_node			*find_last();
 void			stack_from_string(char **argv);
 void			is_arg_valid(char *argv);
+void			is_num_double();
 
 #endif

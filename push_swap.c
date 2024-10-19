@@ -6,13 +6,13 @@
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 18:45:03 by jozefpluta        #+#    #+#             */
-/*   Updated: 2024/10/19 16:49:18 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/10/19 17:45:35 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_node	*stack_a = NULL;
+t_node	*stack_a = NULL; // CANNOT BE GLOBAL VARIABLE
 
 t_node	*stack_from_args(int data) // Create stack from multiple arguments
 {
@@ -99,6 +99,7 @@ int	main(int argc, char **argv) // .. Main function >P
 			i++;
 		}
 	}
+	is_num_double();
 	t_node *current = stack_a;
 	while (current != NULL)
 	{
@@ -128,9 +129,25 @@ void	is_arg_valid(char *argv) // Check if argument is valid (not a char etc)
 		print_error();
 }
 
-void	is_num_twice() // Check for number if its not more than 1x in stack
+void	is_num_double() // Check for number if its not more than 1x in stack
 {
+	t_node	*current;
+	t_node	*temp;
 
+	current = stack_a;
+	temp = NULL;
+	while (current != NULL)
+	{
+		temp = current->next;
+		while (temp != NULL)
+		{
+			if (temp->data == current->data)
+				print_error();
+			temp = temp->next;
+		}
+		temp = NULL;
+		current = current->next;
+	}
 }
 
 void	print_error() // Print error
