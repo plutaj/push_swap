@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 16:44:47 by jpluta            #+#    #+#             */
-/*   Updated: 2024/10/20 17:21:56 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/10/20 18:50:02 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,14 @@ void	sa(t_node **stack_a)
 }
 
 // // ROTATE A - the first elem. becomes last (shift UP all elems)
-// void	ra()
-// {
-
-// }
+void	ra(t_node **stack_a)
+{
+	t_node	*temp;
+	// t_node	*temp2;
+	temp = (*stack_a)->next;
+	temp = temp->next;
+	temp->next = (*stack_a);
+	(*stack_a) = (*stack_a)->next;
+	temp = temp->next;
+	temp->next = NULL;
+}

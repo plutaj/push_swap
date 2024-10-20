@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check.c                                            :+:      :+:    :+:   */
+/*   check_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 15:38:27 by jpluta            #+#    #+#             */
-/*   Updated: 2024/10/20 15:52:57 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/10/20 18:14:46 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,3 +62,14 @@ t_node	*find_last(t_node ***stack_a) // Search for last node
 		temp = temp->next;
 	return (temp);
 }
+
+int	single_arg_case(t_node **stack_a)
+{
+	if ((*stack_a)->next == NULL)
+	{
+		free_list(&(**stack_a));
+		return (1);
+	}
+	return (0);
+}
+
