@@ -9,14 +9,13 @@ CFLAGS = -Wall -Wextra -Werror
 # Include header files
 INCLUDES = -I. -I$(LIBFT_DIR)  # '.' for current directory and libft directory for headers
 
-# Source files (No need to include ft_atoi.c or ft_split.c, they are part of libft.a)
-SRC = push_swap.c  # Assuming push_swap.c is in the same directory as the Makefile
+SRC = $(wildcard *.c) #automatically includes all .c files into source
 
 # Object files (convert .c files to .o files)
 OBJ = $(SRC:.c=.o)
 
 # Executable name
-EXEC = a.out
+EXEC = push_swap
 
 # Default target
 all: $(EXEC)
@@ -33,18 +32,14 @@ $(EXEC): $(OBJ) $(LIBFT_LIB)
 $(LIBFT_LIB):
 	make -C $(LIBFT_DIR)
 
-# Clean up generated files
 clean:
 	rm -f $(OBJ)
 	make clean -C $(LIBFT_DIR)
 
-# Remove the executable and libft.a
 fclean: clean
 	rm -f $(EXEC)
 	rm -f $(LIBFT_LIB)
 
-# Rebuild the project
 re: fclean all
 
-# PHONY targets
 .PHONY: all clean fclean re
