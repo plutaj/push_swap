@@ -14,12 +14,12 @@ typedef struct s_node
 	struct s_node	*next;
 }					t_node;
 
-t_node			*stack_from_args(int data);
+t_node			*stack_from_args(int data, t_node **stack_a);
 void			free_list(t_node *head);
 void			print_error();
-t_node			*find_last();
-void			stack_from_string(char **argv);
+t_node			*find_last(t_node ***stack_a);
+void			stack_from_string(char **argv, t_node **stack_a);
 void			is_arg_valid(char *argv);
-void			is_num_double();
+void			is_num_double(t_node **stack_a);
 
 #endif

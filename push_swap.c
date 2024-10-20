@@ -6,27 +6,25 @@
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 18:45:03 by jozefpluta        #+#    #+#             */
-/*   Updated: 2024/10/19 17:45:35 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/10/20 15:16:01 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_node	*stack_a = NULL; // CANNOT BE GLOBAL VARIABLE
-
-t_node	*stack_from_args(int data) // Create stack from multiple arguments
+t_node	*stack_from_args(int data, t_node **stack_a) // Create stack from multiple arguments
 {
 	t_node	*new;
 	t_node	*temp;
 
-	if (stack_a == NULL)
+	if (*stack_a == NULL)
 	{
 		new = malloc(sizeof(t_node));
 		if (new == NULL)
 			return (NULL);
 		new->data = data;
 		new->i = 0;
-		stack_a = new;
+		*stack_a = new;
 		new->next = NULL;
 	}
 	else
@@ -34,7 +32,7 @@ t_node	*stack_from_args(int data) // Create stack from multiple arguments
 		new = malloc(sizeof(t_node));
 		if (new == NULL)
 			return (NULL);
-		temp = find_last();
+		temp = find_last(&stack_a);
 		temp->next = new;
 		new->data = data;
 		new->next = NULL;
@@ -42,11 +40,11 @@ t_node	*stack_from_args(int data) // Create stack from multiple arguments
 	return (new);
 }
 
-t_node	*find_last() // Search for last node and returns a pointer to it
+t_node	*find_last(t_node ***stack_a) // Search for last node and returns a pointer to it
 {
 	t_node	*temp;
 
-	temp = stack_a;
+	temp = **stack_a;
 	while (temp->next)
 		temp = temp->next;
 	return (temp);
@@ -66,7 +64,7 @@ void	free_list(t_node *stack_a) // Free stack after program ends
 	}
 }
 
-void stack_from_string(char **argv) // Create stack from one string argument
+void stack_from_string(char **argv, t_node **stack_a) // Create stack from one string argument
 {
 	char	**numbers;
 	int		i;
@@ -78,28 +76,32 @@ void stack_from_string(char **argv) // Create stack from one string argument
 	while (numbers[i] != NULL)
 	{
 		is_arg_valid(numbers[i]);
-		stack_from_args(ft_atoi(numbers[i]));
+		stack_from_args(ft_atoi(numbers[i]), &(*stack_a));
 		i++;
 	}
 }
 
 int	main(int argc, char **argv) // .. Main function >P
 {
-	int i = 1;
+	t_node	*stack_a;
+	int		i;
+
+	stack_a = NULL;
+	i = 1;
 	if (argc == 1)
 		print_error();
 	else if (argc == 2)
-		stack_from_string(argv);
+		stack_from_string(argv, &stack_a);
 	else
 	{
 		while (i < argc)
 		{
 			is_arg_valid(argv[i]);
-			stack_from_args(ft_atoi(argv[i]));
+			stack_from_args(ft_atoi(argv[i]), &stack_a);
 			i++;
 		}
 	}
-	is_num_double();
+	is_num_double(&stack_a);
 	t_node *current = stack_a;
 	while (current != NULL)
 	{
@@ -129,12 +131,12 @@ void	is_arg_valid(char *argv) // Check if argument is valid (not a char etc)
 		print_error();
 }
 
-void	is_num_double() // Check for number if its not more than 1x in stack
+void	is_num_double(t_node **stack_a) // Check for number if its not more than 1x in stack
 {
 	t_node	*current;
 	t_node	*temp;
 
-	current = stack_a;
+	current = *stack_a;
 	temp = NULL;
 	while (current != NULL)
 	{
