@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 15:54:57 by jpluta            #+#    #+#             */
-/*   Updated: 2024/10/20 18:51:07 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/10/21 17:20:20 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,8 @@ int			single_arg_case(t_node **stack_a);
 int			check_if_sorted(t_node **stack_a);
 void		sort_three(t_node **stack_a);
 void		ra(t_node **stack_a);
+void		rra(t_node **stack_a);
+t_node		*find_before_last(t_node ***stack_a);
+void		sort_two(t_node **stack_a);
 
 #endif

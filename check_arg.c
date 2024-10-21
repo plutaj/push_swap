@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 15:38:27 by jpluta            #+#    #+#             */
-/*   Updated: 2024/10/20 18:14:46 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/10/21 17:11:14 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,16 @@ t_node	*find_last(t_node ***stack_a) // Search for last node
 
 	temp = **stack_a;
 	while (temp->next)
+		temp = temp->next;
+	return (temp);
+}
+
+t_node	*find_before_last(t_node ***stack_a)
+{
+	t_node	*temp;
+
+	temp = **stack_a;
+	while (temp->next->next)
 		temp = temp->next;
 	return (temp);
 }

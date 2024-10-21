@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 18:45:03 by jozefpluta        #+#    #+#             */
-/*   Updated: 2024/10/20 18:56:59 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/10/21 17:15:48 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ int	main(int argc, char **argv) // .. Main function >P
 		current = current->next;
 	}
 	// PRINT
+
+	//TESTUJ TU
+	sort_three(&stack_a);
 
 	// PRINT
 	printf("\n");
