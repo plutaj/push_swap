@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 18:45:03 by jozefpluta        #+#    #+#             */
-/*   Updated: 2024/10/21 17:15:48 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/10/23 18:49:16 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	main(int argc, char **argv) // .. Main function >P
 		}
 	}
 	is_num_double(&stack_a);
+	add_indexes(&stack_a);
 	if (single_arg_case(&stack_a) == 1) // If only one INT (already sorted)
 		return (0);
 
@@ -47,14 +48,14 @@ int	main(int argc, char **argv) // .. Main function >P
 	// PRINT
 
 	//TESTUJ TU
-	sort_three(&stack_a);
+
 
 	// PRINT
 	printf("\n");
 	current = stack_a;
 	while (current != NULL)
 	{
-		printf("%d, ", current->data);
+		printf("%d, ", current->index);
 		current = current->next;
 	}
 	// PRINT

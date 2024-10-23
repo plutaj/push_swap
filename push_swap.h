@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 15:54:57 by jpluta            #+#    #+#             */
-/*   Updated: 2024/10/21 17:20:20 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/10/23 18:22:23 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 typedef struct s_node
 {
 	int				data;
-	int				i;
+	int				index;
 	struct s_node	*next;
 }					t_node;
 
@@ -41,5 +41,6 @@ void		ra(t_node **stack_a);
 void		rra(t_node **stack_a);
 t_node		*find_before_last(t_node ***stack_a);
 void		sort_two(t_node **stack_a);
+void		add_indexes(t_node **stack_a);
 
 #endif

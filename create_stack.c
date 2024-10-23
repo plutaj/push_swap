@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.c                                            :+:      :+:    :+:   */
+/*   create_stack.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 15:42:15 by jpluta            #+#    #+#             */
-/*   Updated: 2024/10/20 15:54:11 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/10/23 18:50:10 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_node	*stack_from_args(int data, t_node **stack_a)
 		if (new == NULL)
 			return (NULL);
 		new->data = data;
-		new->i = 0;
+		new->index = 0;
 		*stack_a = new;
 		new->next = NULL;
 	}
