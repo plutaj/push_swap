@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 15:38:27 by jpluta            #+#    #+#             */
-/*   Updated: 2024/10/21 17:11:14 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/10/27 17:09:58 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ void	is_num_double(t_node **stack_a) // Check for each num 1x in stack
 		while (temp != NULL)
 		{
 			if (temp->data == current->data)
+			{
+				free_list(*stack_a);
 				print_error();
+			}
 			temp = temp->next;
 		}
 		temp = NULL;

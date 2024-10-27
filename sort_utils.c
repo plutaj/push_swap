@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_algrs.c                                       :+:      :+:    :+:   */
+/*   sort_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 16:47:12 by jpluta            #+#    #+#             */
-/*   Updated: 2024/10/21 17:20:09 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/10/27 16:48:50 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ void	sort_two(t_node **stack_a)
 		sa(&(*stack_a));
 }
 
-// Returns 1 if NOT sorted, else returns 0
-int	check_if_sorted(t_node **stack_a)
+int	check_if_sorted(t_node **stack_a) // Returns 1 if NOT sorted, else returns 0
 {
 	t_node	*temp;
 	t_node	*temp2;
@@ -69,4 +68,19 @@ int	check_if_sorted(t_node **stack_a)
 		temp2 = temp2->next;
 	}
 	return (0);
+}
+
+int	count_nodes(t_node *stack_a)
+{
+	t_node	*temp;
+	int		i;
+
+	temp = stack_a;
+	i = 1;
+	while (temp->next != NULL)
+	{
+		temp = temp->next;
+		i++;
+	}
+	return (i);
 }
