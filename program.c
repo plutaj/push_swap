@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   program.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 15:09:52 by jpluta            #+#    #+#             */
-/*   Updated: 2024/10/27 17:47:55 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/10/29 20:19:11 by jozefpluta       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	edge_cases(t_node *stack_a)
+void	edge_cases(t_node *stack_a)
 {
 	int	i;
 
@@ -29,7 +29,6 @@ int	edge_cases(t_node *stack_a)
 	{
 		if (check_if_sorted(&stack_a) == 1)
 			sort_three(&stack_a);
-		return (0);
 	}
 	// sort(&stack_a);
 }

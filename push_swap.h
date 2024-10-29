@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 15:54:57 by jpluta            #+#    #+#             */
-/*   Updated: 2024/10/27 17:43:01 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/10/29 15:57:22 by jozefpluta       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_node		*find_before_last(t_node ***stack_a);
 void		sort_two(t_node **stack_a);
 void		add_indexes(t_node **stack_a);
 // void		sort(t_node *stack_a);
-int			edge_cases(t_node *stack_a);
+void		edge_cases(t_node *stack_a);
 int			count_nodes(t_node *stack_a);
 void		pb(t_node **stack_a, t_node *stack_b);
 

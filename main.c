@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 18:45:03 by jozefpluta        #+#    #+#             */
-/*   Updated: 2024/10/27 17:46:39 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/10/29 20:35:42 by jozefpluta       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h" // UPRAVIT WILDCARD Z MAKEFILU !!!
 
+void	print_stack_a(t_node *stack_a);
+
 int	main(int argc, char **argv) // .. Main function >P
 {
 	t_node	*stack_a;
-	int		i;
-	t_node	*current;
+	int		i; 
 
 	stack_a = NULL;
 	i = 1;
@@ -34,9 +35,22 @@ int	main(int argc, char **argv) // .. Main function >P
 		}
 	}
 	add_indexes(&stack_a);
-	if (edge_cases(stack_a) == 1) // This function handles all edge cases
-		return (0);
+	print_stack_a(stack_a);
+
+	
+	
+	
+	edge_cases(stack_a);
 	// sort(stack_a);
+	// rra(&stack_a); // Priame volanie v pripade inputu 2 3 1 funguje ale cez edge_cases nefunguje
+	// sort_three(&stack_a);
+
+	
+	print_stack_a(stack_a);
+	if (check_if_sorted(&stack_a) == 0)
+		printf("\nsorted");
+	else
+		printf("\nNOT sorted");
 	free_list(stack_a);
 	return (0);
 }
@@ -45,4 +59,17 @@ void	print_error(void) // Print error
 {
 	write(1, "Error", 5);
 	exit(1);
+}
+
+void	print_stack_a(t_node *stack_a)
+{
+	t_node	*temp;
+
+	temp = stack_a;
+	while (temp)
+	{
+		printf("\n%d (index %d), ", temp->data, temp->index);
+		temp = temp->next;
+	}
+	printf("\n+++++++++++++++++++++++++++++++++++++++++++++");
 }

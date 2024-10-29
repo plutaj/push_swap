@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 16:47:12 by jpluta            #+#    #+#             */
-/*   Updated: 2024/10/27 16:48:50 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/10/29 20:34:07 by jozefpluta       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	sort_three(t_node **stack_a)
 			if (((*stack_a)->data > temp->data)			// 2 1 3
 				&& ((*stack_a)->data < temp->next->data))
 				sa(&(*stack_a));
-			else
+			else										// 2 3 1
 				rra(&(*stack_a));
 		}
 	}
@@ -49,7 +49,7 @@ void	sort_three(t_node **stack_a)
 
 void	sort_two(t_node **stack_a)
 {
-	if ((*stack_a)->next < (*stack_a))
+	if ((*stack_a)->data > (*stack_a)->next->data)
 		sa(&(*stack_a));
 }
 
@@ -76,8 +76,8 @@ int	count_nodes(t_node *stack_a)
 	int		i;
 
 	temp = stack_a;
-	i = 1;
-	while (temp->next != NULL)
+	i = 0;
+	while (temp != NULL)
 	{
 		temp = temp->next;
 		i++;
