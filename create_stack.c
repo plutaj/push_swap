@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 15:42:15 by jpluta            #+#    #+#             */
-/*   Updated: 2024/10/23 18:50:10 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/11/01 15:56:40 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_node	*stack_from_args(int data, t_node **stack_a)
 		new = malloc(sizeof(t_node));
 		if (new == NULL)
 			return (NULL);
-		temp = find_last(&stack_a);
+		temp = find_last(stack_a);
 		temp->next = new;
 		new->data = data;
 		new->next = NULL;

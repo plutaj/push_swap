@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 18:45:03 by jozefpluta        #+#    #+#             */
-/*   Updated: 2024/10/29 20:35:42 by jozefpluta       ###   ########.fr       */
+/*   Updated: 2024/11/01 17:21:54 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	print_stack_a(t_node *stack_a);
 int	main(int argc, char **argv) // .. Main function >P
 {
 	t_node	*stack_a;
-	int		i; 
+	int		i;
 
 	stack_a = NULL;
 	i = 1;
@@ -37,15 +37,11 @@ int	main(int argc, char **argv) // .. Main function >P
 	add_indexes(&stack_a);
 	print_stack_a(stack_a);
 
-	
-	
-	
-	edge_cases(stack_a);
+	edge_cases(&stack_a);
 	// sort(stack_a);
 	// rra(&stack_a); // Priame volanie v pripade inputu 2 3 1 funguje ale cez edge_cases nefunguje
 	// sort_three(&stack_a);
 
-	
 	print_stack_a(stack_a);
 	if (check_if_sorted(&stack_a) == 0)
 		printf("\nsorted");

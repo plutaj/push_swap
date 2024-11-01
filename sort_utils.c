@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 16:47:12 by jpluta            #+#    #+#             */
-/*   Updated: 2024/10/29 20:34:07 by jozefpluta       ###   ########.fr       */
+/*   Updated: 2024/11/01 15:47:03 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	sort_three(t_node **stack_a)
 		else if (((*stack_a)->data < temp->data)
 			&& ((*stack_a)->data < temp->next->data))	// 1 3 2
 		{
-			sa(&(*stack_a));
+			sa(stack_a);
 			ra(&(*stack_a));
 		}
 		else											// 2 x x

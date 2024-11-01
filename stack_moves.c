@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_moves.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 16:44:47 by jpluta            #+#    #+#             */
-/*   Updated: 2024/10/29 20:22:31 by jozefpluta       ###   ########.fr       */
+/*   Updated: 2024/11/01 15:55:59 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	sa(t_node **stack_a) // nefunguje (asi)
 	*stack_a = (*stack_a)->next;
 	temp->next = (*stack_a)->next;
 	(*stack_a)->next = temp;
-	
+
 	write(1, "sa\n", 3);
 }
 
@@ -31,7 +31,7 @@ void	ra(t_node **stack_a)
 	t_node	*temp;
 	t_node	*last;
 
-	last = find_last(&stack_a);
+	last = find_last(stack_a);
 	temp = *stack_a;
 	*stack_a = (*stack_a)->next;
 	temp->next = NULL;
@@ -45,8 +45,8 @@ void	rra(t_node **stack_a)
 	t_node	*last;
 	t_node	*before_last;
 
-	before_last = find_before_last(&stack_a);
-	last = find_last(&stack_a);
+	before_last = find_before_last(stack_a);
+	last = find_last(stack_a);
 	last->next = (*stack_a);
 	before_last->next = NULL;
 	*stack_a = last;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 15:38:27 by jpluta            #+#    #+#             */
-/*   Updated: 2024/10/29 20:33:05 by jozefpluta       ###   ########.fr       */
+/*   Updated: 2024/11/01 17:20:04 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	is_arg_valid(char *argv) // Check if argument is valid (not a char etc)
 	{
 		if ((argv[i] == '-' || argv[i] == '+')
 			&& (ft_isdigit(argv[i + 1]) == 1))
+			i++;
+		else if (argv[i] == ' ') //  toto som pridal
 			i++;
 		else if (ft_isdigit(argv[i]) == 0)
 			print_error();
@@ -56,21 +58,21 @@ void	is_num_double(t_node **stack_a) // Check for each num 1x in stack
 	}
 }
 
-t_node	*find_last(t_node ***stack_a) // Search for last node
+t_node	*find_last(t_node **stack_a) // Search for last node
 {
 	t_node	*temp;
 
-	temp = **stack_a;
+	temp = *stack_a;
 	while (temp->next)
 		temp = temp->next;
 	return (temp);
 }
 
-t_node	*find_before_last(t_node ***stack_a)
+t_node	*find_before_last(t_node **stack_a)
 {
 	t_node	*temp;
 
-	temp = **stack_a;
+	temp = *stack_a;
 	while (temp->next->next)
 		temp = temp->next;
 	return (temp);
