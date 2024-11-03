@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 15:42:15 by jpluta            #+#    #+#             */
-/*   Updated: 2024/11/01 15:56:40 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/11/03 16:06:07 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_node	*stack_from_args(int data, t_node **stack_a)
 		if (new == NULL)
 			return (NULL);
 		new->data = data;
-		new->index = 0;
+		new->cost = 0;
 		*stack_a = new;
 		new->next = NULL;
 	}
@@ -36,6 +36,7 @@ t_node	*stack_from_args(int data, t_node **stack_a)
 		temp = find_last(stack_a);
 		temp->next = new;
 		new->data = data;
+		new->cost = 0;
 		new->next = NULL;
 	}
 	return (new);

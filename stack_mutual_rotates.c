@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_moves.c                                      :+:      :+:    :+:   */
+/*   stack_mutual_rotates.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/20 16:44:47 by jpluta            #+#    #+#             */
-/*   Updated: 2024/11/01 15:55:59 by jpluta           ###   ########.fr       */
+/*   Created: 2024/11/03 16:14:41 by jpluta            #+#    #+#             */
+/*   Updated: 2024/11/03 16:35:40 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// SWAP A - swap first two elems. of A
-void	sa(t_node **stack_a) // nefunguje (asi)
+// Rotate stack_a and stack_b at the same time
+void	rr(t_node **stack_a, t_node **stack_b)
 {
-	t_node	*temp;
-
-	temp = *stack_a;
-	*stack_a = (*stack_a)->next;
-	temp->next = (*stack_a)->next;
-	(*stack_a)->next = temp;
-
-	write(1, "sa\n", 3);
-}
-
-// ROTATE A - the first elem. becomes last (shift UP all elems)
-void	ra(t_node **stack_a)
-{
+	if (!stack_a || !(*stack_a)->next)
+		return ;
+	else if (!stack_b || !(*stack_b)->next)
+		return ;
 	t_node	*temp;
 	t_node	*last;
 
@@ -36,12 +27,24 @@ void	ra(t_node **stack_a)
 	*stack_a = (*stack_a)->next;
 	temp->next = NULL;
 	last->next = temp;
-	write(1, "ra\n", 3);
+	temp = NULL;
+	last = NULL;
+	last = find_last(stack_b);
+	temp = *stack_b;
+	*stack_b = (*stack_b)->next;
+	temp->next = NULL;
+	last->next = temp;
+	write(1, "rr\n", 3);
+
 }
 
-// Reverse rotate A - shift down all elem. of A (last element become first)
-void	rra(t_node **stack_a)
+// REVERSE rotate stack_a and stack_b at the same time
+void	rrr(t_node **stack_a, t_node **stack_b)
 {
+	if (!stack_a || !(*stack_a)->next)
+		return ;
+	else if (!stack_b || !(*stack_b)->next)
+		return ;
 	t_node	*last;
 	t_node	*before_last;
 
@@ -50,20 +53,12 @@ void	rra(t_node **stack_a)
 	last->next = (*stack_a);
 	before_last->next = NULL;
 	*stack_a = last;
-	write(1, "rra\n", 4);
-}
-
-// Take the first element of A and push it to B
-void	pb(t_node **stack_a, t_node *stack_b)
-{
-	t_node	*temp;
-
-	temp = (*stack_a)->next;
-	if (*stack_a != NULL)
-	{
-		(*stack_a)->next = stack_b;
-		stack_b = (*stack_a);
-		(*stack_a) = temp;
-	}
-	write(1, "pb\n", 3);
+	last = NULL;
+	before_last = NULL;
+	before_last = find_before_last(stack_b);
+	last = find_last(stack_b);
+	last->next = (*stack_b);
+	before_last->next = NULL;
+	*stack_b = last;
+	write(1, "rrr\n", 4);
 }

@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 16:47:12 by jpluta            #+#    #+#             */
-/*   Updated: 2024/11/01 15:47:03 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/11/03 15:37:10 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,12 @@ int	check_if_sorted(t_node **stack_a) // Returns 1 if NOT sorted, else returns 0
 	return (0);
 }
 
-int	count_nodes(t_node *stack_a)
+int	count_nodes(t_node *stack)
 {
 	t_node	*temp;
 	int		i;
 
-	temp = stack_a;
+	temp = stack;
 	i = 0;
 	while (temp != NULL)
 	{

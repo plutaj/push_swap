@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   program.c                                          :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 15:09:52 by jpluta            #+#    #+#             */
-/*   Updated: 2024/11/01 15:35:56 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/11/03 16:38:03 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,23 @@ void	edge_cases(t_node **stack_a)
 		if (check_if_sorted(stack_a) == 1)
 			sort_three(stack_a);
 	}
-	// sort(&stack_a);
 }
 
-// void	sort(t_node *stack_a)
-// {
-// 	t_node	*stack_b;
+void	sort(t_node **stack_a, t_node **stack_b)
+{
+	if (check_if_sorted(stack_a) == 0)
+		return ;
+	edge_cases(stack_a);
+	while (count_nodes(*stack_a) > 3 && count_nodes(*stack_b) < 2)
+		pb(stack_a, stack_b);
+	while (count_nodes(*stack_a > 3))
+	{
+		make_costs(stack_a, stack_b);
+	}
+	sort_three(stack_a);
+}
 
-// 	stack_b = NULL;
+void	make_costs(t_node **stack_a, t_node **stack_b)
+{
 
-// 	// while (count_nodes(&stack_a) > 3)
-// 	// {
-
-// 	// }
-// }
+}
