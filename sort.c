@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 15:09:52 by jpluta            #+#    #+#             */
-/*   Updated: 2024/11/05 17:37:12 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/11/05 18:00:27 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	find_couple(t_node **stack_a, t_node **stack_b)
 
 void	make_cost(t_node **temp_a, int index_of_a, int index_of_b)
 {
+	// rr COST________________________________
 	int	cost;
 
 	cost = 0;
@@ -86,6 +87,13 @@ void	make_cost(t_node **temp_a, int index_of_a, int index_of_b)
 	else if (index_of_a <= index_of_b)
 		cost = index_of_b;
 	(*temp_a)->cost = cost;
+	// rr COST________________________________
+
+	// rrr COST________________________________
+
+		// porovnat ktory je lacnejsi, a to je nova price
+	// rrr COST________________________________
+
 }
 
 
