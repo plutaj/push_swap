@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 18:45:03 by jozefpluta        #+#    #+#             */
-/*   Updated: 2024/11/03 16:38:32 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/11/05 16:39:19 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	main(int argc, char **argv) // .. Main function >P
 		}
 	}
 	add_indexes(&stack_a);
-	// print_stack(stack_a);
 
 	sort(&stack_a, &stack_b);
 
@@ -47,6 +46,13 @@ int	main(int argc, char **argv) // .. Main function >P
 	printf("\nSTACK B:\n");
 	print_stack(stack_b);
 
+	t_node	*temp = stack_a;
+	printf ("\nCOSTS for A");
+	while (temp)
+	{
+		printf ("\n%d", temp->cost);
+		temp = temp->next;
+	}
 	// if (check_if_sorted(&stack_a) == 0)
 	// 	printf("\nsorted");
 	// else
