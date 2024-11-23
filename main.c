@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 18:45:03 by jozefpluta        #+#    #+#             */
-/*   Updated: 2024/11/05 16:39:19 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/11/23 16:45:51 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,27 +36,15 @@ int	main(int argc, char **argv) // .. Main function >P
 			i++;
 		}
 	}
-	add_indexes(&stack_a);
 
+	add_indexes(&stack_a);
 	sort(&stack_a, &stack_b);
 
-	printf("\nSTACK A:\n");
+	// TESTING
 	print_stack(stack_a);
-
-	printf("\nSTACK B:\n");
 	print_stack(stack_b);
+	// TESTING
 
-	t_node	*temp = stack_a;
-	printf ("\nCOSTS for A");
-	while (temp)
-	{
-		printf ("\n%d", temp->cost);
-		temp = temp->next;
-	}
-	// if (check_if_sorted(&stack_a) == 0)
-	// 	printf("\nsorted");
-	// else
-	// 	printf("\nNOT sorted");
 	free_list(stack_a);
 	return (0);
 }
@@ -74,7 +62,7 @@ void	print_stack(t_node *stack)
 	temp = stack;
 	while (temp)
 	{
-		printf("\n%d (index %d), ", temp->data, temp->index);
+		printf("\ndata:%d  index:%d  cost:%d", temp->data, temp->index, temp->cost);
 		temp = temp->next;
 	}
 	printf("\n+++++++++++++++++++++++++++++++++++++++++++++");

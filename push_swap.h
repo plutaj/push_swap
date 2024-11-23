@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 15:54:57 by jpluta            #+#    #+#             */
-/*   Updated: 2024/11/05 16:43:16 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/11/23 17:09:04 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void		add_indexes(t_node **stack_a);
 void		sort(t_node **stack_a, t_node **stack_b);
 void		edge_cases(t_node **stack_a);
 int			count_nodes(t_node *stack);
-void		find_couple(t_node **stack_a, t_node **stack_b);
+void		find_couple_byrr(t_node **stack_a, t_node **stack_b);
+void		calculate_cost_byrrr(t_node **stack_a, t_node **stack_b, int index_b);
 int			get_position_index(t_node **elem, t_node **stack);
 int			find_biggest(t_node **stack_b);
 void		make_cost(t_node **temp_a, int index_of_a, int index_of_b);
