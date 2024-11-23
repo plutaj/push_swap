@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 15:54:57 by jpluta            #+#    #+#             */
-/*   Updated: 2024/11/23 17:09:04 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/11/23 20:28:58 by jozefpluta       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
+# include <stdbool.h>
 
 typedef struct s_node
 {
@@ -49,6 +50,8 @@ void		calculate_cost_byrrr(t_node **stack_a, t_node **stack_b, int index_b);
 int			get_position_index(t_node **elem, t_node **stack);
 int			find_biggest(t_node **stack_b);
 void		make_cost(t_node **temp_a, int index_of_a, int index_of_b);
+t_node		*find_cheapest(t_node **stack_a);
+
 
 // Stack moves
 void		sa(t_node **stack_a);

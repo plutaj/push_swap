@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 15:09:52 by jpluta            #+#    #+#             */
-/*   Updated: 2024/11/23 17:13:45 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/11/23 20:50:36 by jozefpluta       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,68 @@ void	edge_cases(t_node **stack_a)
 
 void	sort(t_node **stack_a, t_node **stack_b)
 {
+	t_node	*temp;
 	if (check_if_sorted(stack_a) == 0)
 		return ;
 	edge_cases(stack_a);
 	while (count_nodes(*stack_a) > 3 && count_nodes(*stack_b) < 2)
 		pb(stack_a, stack_b);
-	find_couple_byrr(stack_a, stack_b);
 
+	// test purposes
+	pb(stack_a, stack_b);
+	pb(stack_a, stack_b);
+	pb(stack_a, stack_b);
+	// test purposes
+	
+
+	// test purposes
+	find_couple_byrr(stack_a, stack_b); // This function add costs to each node
+	temp = find_cheapest(stack_a); // This function find the cheapest move
+	printf("\ncheapest is %d, cuz cost is %d", temp->index, temp->cost);
+	// test purposes
+
+	//orig code below
 	// while (count_nodes(*stack_a) > 3)
 	// {
+	// 	temp = NULL;
+	// 	find_couple_byrr(stack_a, stack_b); // This function add costs to each node
+	// 	temp = find_cheapest(stack_a); // This function find the cheapest move
 	// }
-	// sort_three(stack_a); comentet for testing purposes
+	// sort_three(stack_a);
+}
+
+// Bool shows it actuall cheapest is pozit or negat num
+t_node	*find_cheapest(t_node **stack_a)
+{
+	t_node	*temp;
+	t_node	*cheapest;
+	bool	pozit_cheap_num;
+
+	temp = *stack_a;
+	cheapest = temp;
+	pozit_cheap_num = true; // Shows it actuall cheapest is pozit or negat num
+	while (temp)
+	{
+		if (temp->cost == 0)
+			return (temp);
+		else if (temp->cost < 0)
+		{
+			if (((temp->cost * (-1)) < cheapest->cost) && pozit_cheap_num)
+			{
+				pozit_cheap_num = false;
+				cheapest = temp;
+			}
+			else if (((temp->cost * (-1)) < (cheapest->cost * (-1))) && !pozit_cheap_num)
+			{
+				pozit_cheap_num = true;
+				cheapest = temp;
+			}
+		}
+		else if (temp->cost < cheapest->cost)
+			cheapest = temp;
+		temp = temp->next;
+	}
+	return (cheapest);
 }
 
 // Add costs to every element in a stack
@@ -56,7 +107,7 @@ void	find_couple_byrr(t_node **stack_a, t_node **stack_b)
 	t_node	*temp_b;
 	int		index_of_b;
 	int		index_of_a;
-	int		prev_b_index;
+	int		highest_lower_i;
 
 	temp_a = *stack_a;
 	index_of_b = 0;
@@ -65,12 +116,17 @@ void	find_couple_byrr(t_node **stack_a, t_node **stack_b)
 	{
 		temp_b = *stack_b;
 		index_of_b = -1;
-		prev_b_index = 0;
+		highest_lower_i = -1;
 		while (temp_b) // Looking for smallest closest number in stack_b
 		{
-			if (temp_a->index > temp_b->index && temp_b->index > prev_b_index)
-				index_of_b = get_position_index(&temp_b, stack_b);
-			prev_b_index = temp_b->index;
+			if (temp_a->index > temp_b->index)
+			{
+				if (temp_b->index > highest_lower_i)
+				{
+					highest_lower_i = temp_b->index;
+					index_of_b = get_position_index(&temp_b, stack_b);
+				}
+			}
 			temp_b = temp_b->next;
 		}
 		if (!temp_b && index_of_b == -1) // If there is none finding biggest
