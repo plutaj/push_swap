@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 18:45:03 by jozefpluta        #+#    #+#             */
-/*   Updated: 2024/11/23 16:45:51 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/11/24 17:05:07 by jozefpluta       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,17 @@ int	main(int argc, char **argv) // .. Main function >P
 	}
 
 	add_indexes(&stack_a);
+
+	// TESTING
+	printf("\nBEFORE_______________________");
+	print_stack(stack_a);
+	print_stack(stack_b);
+	// TESTING
+	
 	sort(&stack_a, &stack_b);
 
 	// TESTING
+	printf("\nAFTER_________________________");
 	print_stack(stack_a);
 	print_stack(stack_b);
 	// TESTING

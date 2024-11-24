@@ -6,7 +6,7 @@
 /*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 15:54:57 by jpluta            #+#    #+#             */
-/*   Updated: 2024/11/23 20:28:58 by jozefpluta       ###   ########.fr       */
+/*   Updated: 2024/11/24 16:49:06 by jozefpluta       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int			get_position_index(t_node **elem, t_node **stack);
 int			find_biggest(t_node **stack_b);
 void		make_cost(t_node **temp_a, int index_of_a, int index_of_b);
 t_node		*find_cheapest(t_node **stack_a);
-
+int			find_pair_stack_b(t_node *temp_a, t_node *temp_b, t_node **stack_b);
+void		rotate_and_push(t_node **stack_a, t_node **stack_b, t_node *node_to_push, int i_of_final_dest_b);
 
 // Stack moves
 void		sa(t_node **stack_a);
