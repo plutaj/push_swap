@@ -6,7 +6,7 @@
 /*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 15:09:52 by jpluta            #+#    #+#             */
-/*   Updated: 2024/11/24 17:54:49 by jozefpluta       ###   ########.fr       */
+/*   Updated: 2024/11/27 20:19:52 by jozefpluta       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	sort(t_node **stack_a, t_node **stack_b)
 		// printf("\nindex %d has final dest is %d", node_to_push->index, i_of_final_dest_b);
 	}
 	sort_three(stack_a);
+	sort_stack_b(stack_b);
 }
 
 // void	reverse_rotate_and_push(t_node **stack_a, t_node **stack_b, 
@@ -78,7 +79,7 @@ void	rotate_and_push(t_node **stack_a, t_node **stack_b,
 	index_b = i_of_final_dest_b;
 	// if (node_to_push->cost < 0)
 	// 	reverse_rotate_and_push(); // vytvorit funkciu
-	printf("\ndata INDEX %d, A stack %d, B stack %d", node_to_push->index, index_a, index_b);
+	printf("\ncheapes node to push %d, A position %d, B final dest posit. %d, cost %d", node_to_push->index, index_a, index_b, node_to_push->cost);
 	while (index_a > 0 || index_b > 0)
 	{
 		if (index_a == 0 && index_b > 0)
@@ -98,8 +99,50 @@ void	rotate_and_push(t_node **stack_a, t_node **stack_b,
 			index_b--;
 		}
 	}
-	printf("\ndata INDEX %d, A stack %d, B stack %d", node_to_push->index, index_a, index_b);
+	printf("\ncheapes node to push %d, A position %d, B final dest posit. %d", node_to_push->index, index_a, index_b);
+	printf("\n____________________________________________________");
 	pb(stack_a, stack_b);
+}
+
+// t_node	*find_lowest_index(t_node **stack_b)
+// {
+// 	t_node	*temp_b;
+// 	t_node	*temp;
+
+// 	temp_b = *stack_b;
+// 	temp = *stack_b;
+// 	while (temp_b)
+// 	{
+// 		if (temp_b->index < temp->index)
+// 			temp = temp_b;
+// 		temp_b = temp_b->next;
+// 	}
+// 	return (temp);
+// }
+
+void	sort_stack_b(t_node **stack_b)
+{
+	int	biggest_index;
+	int	count;
+
+	biggest_index = find_biggest(stack_b);
+	count = count_nodes(*stack_b);
+	if (biggest_index >= (count / 2))
+	{
+		while (biggest_index != 0)
+		{
+			rrb(stack_b);
+			biggest_index--;
+		}
+	}
+	else
+	{
+		while (biggest_index != 0)
+		{
+			rb(stack_b);
+			biggest_index--;
+		}
+	}
 }
 
 // Bool shows it actuall cheapest is pozit or negat num
@@ -164,7 +207,8 @@ int	find_pair_stack_b(t_node *temp_a, t_node *temp_b, t_node **stack_b)
 	int		index_of_b;
 
 	highest_lower_i = -1;
-	index_of_b = 0;
+	index_of_b = -1;
+	temp_b = *stack_b;
 	while (temp_b) // Looking for smallest closest number in stack_b
 	{
 		if (temp_a->index > temp_b->index)
@@ -177,7 +221,7 @@ int	find_pair_stack_b(t_node *temp_a, t_node *temp_b, t_node **stack_b)
 		}
 		temp_b = temp_b->next;
 	}
-	if (!temp_b && index_of_b == 0) // If there is none finding biggest
+	if (highest_lower_i == -1 && index_of_b == -1) // If there is none finding biggest
 		index_of_b = find_biggest(stack_b);
 	return (index_of_b);
 }
