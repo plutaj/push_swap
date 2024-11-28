@@ -3,7 +3,7 @@ LIBFT_DIR = libft
 LIBFT_LIB = $(LIBFT_DIR)/libft.a  # Path to the libft static library
 
 # Compiler and flags
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 # Include header files

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 15:54:57 by jpluta            #+#    #+#             */
-/*   Updated: 2024/11/27 19:55:49 by jozefpluta       ###   ########.fr       */
+/*   Updated: 2024/11/28 17:13:19 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,14 @@ t_node		*find_cheapest(t_node **stack_a);
 int			find_pair_stack_b(t_node *temp_a, t_node *temp_b, t_node **stack_b);
 void		rotate_and_push(t_node **stack_a, t_node **stack_b, t_node *node_to_push, int i_of_final_dest_b);
 // t_node		*find_lowest_index(t_node **stack_b);
-void		sort_stack_b(t_node **stack_b);
+void		sort_stack_b(t_node **stack_a, t_node **stack_b);
+void		push_on_lowest(t_node **stack_a, t_node **stack_b);
+void		push_back_to_a(t_node **stack_a, t_node **stack_b);
+// void		find_closest_higher(t_node **stack_a, t_node **stack_b);
+void		push_on_highest(t_node **stack_a, t_node **stack_b);
+t_node		*find_highest_index(t_node **stack_a, t_node **stack_b);
+void		push_on_lowest(t_node **stack_a, t_node **stack_b);
+t_node		*find_lowest_index(t_node **stack_a);
 
 // Stack moves
 void		sa(t_node **stack_a);
