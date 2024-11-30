@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 18:45:03 by jozefpluta        #+#    #+#             */
-/*   Updated: 2024/11/24 17:05:07 by jozefpluta       ###   ########.fr       */
+/*   Updated: 2024/11/30 15:04:47 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h" // UPRAVIT WILDCARD Z MAKEFILU !!!
-
-void	print_stack_a(t_node *stack_a);
 
 int	main(int argc, char **argv) // .. Main function >P
 {
@@ -44,7 +42,7 @@ int	main(int argc, char **argv) // .. Main function >P
 	print_stack(stack_a);
 	print_stack(stack_b);
 	// TESTING
-	
+
 	sort(&stack_a, &stack_b);
 
 	// TESTING

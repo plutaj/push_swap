@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 15:54:57 by jpluta            #+#    #+#             */
-/*   Updated: 2024/11/28 17:13:19 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/11/30 18:01:30 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,11 @@ void		sort(t_node **stack_a, t_node **stack_b);
 void		edge_cases(t_node **stack_a);
 int			count_nodes(t_node *stack);
 void		find_couple_byrr(t_node **stack_a, t_node **stack_b);
-void		calculate_cost_byrrr(t_node **stack_a, t_node **stack_b, int index_b);
+// void		calculate_cost_byrrr(t_node **stack_a, t_node **stack_b, int index_b);
 int			get_position_index(t_node **elem, t_node **stack);
 int			find_biggest(t_node **stack_b);
-void		make_cost(t_node **temp_a, int index_of_a, int index_of_b);
+void		make_cost(t_node **temp_a, int index_of_a, int index_of_b,
+				t_node **stack_a, t_node **stack_b);
 t_node		*find_cheapest(t_node **stack_a);
 int			find_pair_stack_b(t_node *temp_a, t_node *temp_b, t_node **stack_b);
 void		rotate_and_push(t_node **stack_a, t_node **stack_b, t_node *node_to_push, int i_of_final_dest_b);
@@ -62,6 +63,12 @@ void		push_on_highest(t_node **stack_a, t_node **stack_b);
 t_node		*find_highest_index(t_node **stack_a, t_node **stack_b);
 void		push_on_lowest(t_node **stack_a, t_node **stack_b);
 t_node		*find_lowest_index(t_node **stack_a);
+void		reverse_rotate_and_push(t_node **stack_a, t_node **stack_b,
+				t_node *node_to_push, int i_of_final_dest_b);
+void		simultan_rr(t_node **stack_a, t_node **stack_b,
+				t_node *node_to_push, int i_of_final_dest_b);
+// void		rotate_stack_a(t_node **node_to_push, t_node **stack_a);
+// void		rotate_stack_b(int i_of_final_dest_b, t_node **stack_b);
 
 // Stack moves
 void		sa(t_node **stack_a);
