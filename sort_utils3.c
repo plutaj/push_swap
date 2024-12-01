@@ -1,27 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_stack.c                                       :+:      :+:    :+:   */
+/*   sort_utils3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/20 15:34:02 by jpluta            #+#    #+#             */
-/*   Updated: 2024/10/27 15:20:29 by jpluta           ###   ########.fr       */
+/*   Created: 2024/12/01 13:58:02 by jpluta            #+#    #+#             */
+/*   Updated: 2024/12/01 14:12:44 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_list(t_node *stack_a) // Free stack
+t_node	*find_cheapest(t_node **stack_a)
 {
-	t_node	*current;
-	t_node	*next_node;
+	t_node	*temp;
+	t_node	*cheapest;
 
-	current = stack_a;
-	while (current != NULL)
+	temp = *stack_a;
+	cheapest = temp;
+	while (temp)
 	{
-		next_node = current->next;
-		free(current);
-		current = next_node;
+		if (temp->cost < cheapest->cost)
+			cheapest = temp;
+		temp = temp->next;
 	}
+	return (cheapest);
+}
+
+int	count_nodes(t_node *stack)
+{
+	t_node	*temp;
+	int		i;
+
+	temp = stack;
+	i = 0;
+	while (temp != NULL)
+	{
+		temp = temp->next;
+		i++;
+	}
+	return (i);
 }

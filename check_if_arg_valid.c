@@ -6,13 +6,14 @@
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 15:38:27 by jpluta            #+#    #+#             */
-/*   Updated: 2024/11/01 17:20:04 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/12/01 13:43:23 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	is_arg_valid(char *argv) // Check if argument is valid (not a char etc)
+// Check if argument is valid (not a char etc)
+void	is_arg_valid(char *argv)
 {
 	int			i;
 	long long	a;
@@ -23,7 +24,7 @@ void	is_arg_valid(char *argv) // Check if argument is valid (not a char etc)
 		if ((argv[i] == '-' || argv[i] == '+')
 			&& (ft_isdigit(argv[i + 1]) == 1))
 			i++;
-		else if (argv[i] == ' ') //  toto som pridal
+		else if (argv[i] == ' ')
 			i++;
 		else if (ft_isdigit(argv[i]) == 0)
 			print_error();
@@ -34,7 +35,8 @@ void	is_arg_valid(char *argv) // Check if argument is valid (not a char etc)
 		print_error();
 }
 
-void	is_num_double(t_node **stack_a) // Check for each num 1x in stack
+// Check for each num 1x in stack
+void	is_num_double(t_node **stack_a)
 {
 	t_node	*current;
 	t_node	*temp;
@@ -58,7 +60,8 @@ void	is_num_double(t_node **stack_a) // Check for each num 1x in stack
 	}
 }
 
-t_node	*find_last(t_node **stack_a) // Search for last node
+// Search for last node
+t_node	*find_last(t_node **stack_a)
 {
 	t_node	*temp;
 

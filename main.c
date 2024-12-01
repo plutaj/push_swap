@@ -6,13 +6,13 @@
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 18:45:03 by jozefpluta        #+#    #+#             */
-/*   Updated: 2024/12/01 13:31:36 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/12/01 14:05:29 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h" // UPRAVIT WILDCARD Z MAKEFILU !!!
+#include "push_swap.h"
 
-int	main(int argc, char **argv) // .. Main function >P
+int	main(int argc, char **argv)
 {
 	t_node	*stack_a;
 	t_node	*stack_b;
@@ -21,55 +21,43 @@ int	main(int argc, char **argv) // .. Main function >P
 	stack_a = NULL;
 	stack_b = NULL;
 	i = 1;
-	if (argc == 1) // No argument case
+	if (argc == 1)
 		print_error();
-	else if (argc == 2) // String argument or one argument case
+	else if (argc == 2)
 		stack_from_string(argv, &stack_a);
 	else
 	{
-		while (i < argc) // More arguments case
+		while (i < argc)
 		{
 			is_arg_valid(argv[i]);
 			stack_from_args(ft_atoi(argv[i]), &stack_a);
 			i++;
 		}
 	}
-
 	add_indexes(&stack_a);
-
-	// // TESTING
-	// printf("\nBEFORE_______________________");
-	// print_stack(stack_a);
-	// print_stack(stack_b);
-	// // TESTING
-
 	sort(&stack_a, &stack_b);
-
-	// // TESTING
-	// printf("\nAFTER_________________________");
-	// print_stack(stack_a);
-	// print_stack(stack_b);
-	// // TESTING
-
 	free_list(stack_a);
 	return (0);
 }
 
-void	print_error(void) // Print error
+// Print error
+void	print_error(void)
 {
 	write(1, "Error", 5);
 	exit(1);
 }
 
-void	print_stack(t_node *stack)
+// Free stack
+void	free_list(t_node *stack_a)
 {
-	t_node	*temp;
+	t_node	*current;
+	t_node	*next_node;
 
-	temp = stack;
-	while (temp)
+	current = stack_a;
+	while (current != NULL)
 	{
-		printf("\ndata:%d  index:%d  cost:%d", temp->data, temp->index, temp->cost);
-		temp = temp->next;
+		next_node = current->next;
+		free(current);
+		current = next_node;
 	}
-	printf("\n+++++++++++++++++++++++++++++++++++++++++++++");
 }

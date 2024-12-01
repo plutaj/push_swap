@@ -9,7 +9,7 @@ CFLAGS = -Wall -Wextra -Werror
 # Include header files
 INCLUDES = -I. -I$(LIBFT_DIR)  # '.' for current directory and libft directory for headers
 
-SRC = $(wildcard *.c) #automatically includes all .c files into source
+SRC = add_indexes.c check_if_arg_valid.c create_stack.c main.c push_back_to_a.c sort_utils.c sort_utils1.c sort_utils2.c sort_utils3.c stack_moves_rbra.c stack_moves_rr.c stack_moves_sapa.c
 
 # Object files (convert .c files to .o files)
 OBJ = $(SRC:.c=.o)

@@ -5,82 +5,132 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/20 16:47:12 by jpluta            #+#    #+#             */
-/*   Updated: 2024/11/03 15:37:10 by jpluta           ###   ########.fr       */
+/*   Created: 2024/10/27 15:09:52 by jpluta            #+#    #+#             */
+/*   Updated: 2024/12/01 13:58:47 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_three(t_node **stack_a)
+void	sort(t_node **stack_a, t_node **stack_b)
 {
-	t_node	*temp;
+	t_node	*node_to_push;
+	int		i_of_final_dest_b;
+	t_node	*temp_b;
 
-	temp = (*stack_a)->next;
-	if (check_if_sorted(stack_a) == 1)
+	i_of_final_dest_b = 0;
+	temp_b = *stack_b;
+	if (check_if_sorted(stack_a) == 0)
+		return ;
+	edge_cases(stack_a);
+	while (count_nodes(*stack_a) > 3 && count_nodes(*stack_b) < 2)
+		pb(stack_a, stack_b);
+	while (count_nodes(*stack_a) > 3)
 	{
-		if (((*stack_a)->data > temp->data)				// 3 x x
-			&& ((*stack_a)->data > temp->next->data))
+		find_couple_byrr(stack_a, stack_b);
+		node_to_push = find_cheapest(stack_a);
+		i_of_final_dest_b = find_pair_stack_b(node_to_push, temp_b, stack_b);
+		rotate_and_push(stack_a, stack_b, node_to_push, i_of_final_dest_b);
+	}
+	sort_three(stack_a);
+	sort_stack_b(stack_a, stack_b);
+}
+
+void	rotate_and_push(t_node **stack_a, t_node **stack_b,
+			t_node *node_to_push, int i_of_final_dest_b)
+{
+	int	index_a;
+	int	index_b;
+
+	index_a = get_position_index(&node_to_push, stack_a);
+	index_b = i_of_final_dest_b;
+	if (((count_nodes(*stack_a) + count_nodes(*stack_b)) / 2) < ((index_a + index_b) / 2))
+		reverse_rotate_and_push(stack_a, stack_b, node_to_push, i_of_final_dest_b);
+	else
+		simultan_rr(stack_a, stack_b, node_to_push, i_of_final_dest_b);
+	pb(stack_a, stack_b);
+}
+
+void	reverse_rotate_and_push(t_node **stack_a, t_node **stack_b,
+			t_node *node_to_push, int i_of_final_dest_b)
+{
+	int	index_a;
+	int	index_b;
+
+	index_a = get_position_index(&node_to_push, stack_a);
+	index_b = i_of_final_dest_b;
+	while (index_a <= count_nodes(*stack_a) || index_b <= count_nodes(*stack_b))
+	{
+		if (index_a <= count_nodes(*stack_a) && index_b <= count_nodes(*stack_b))
 		{
-			if (temp->data > temp->next->data)			// 3 2 1
-			{
-				ra(&(*stack_a));
-				sa(&(*stack_a));
-			}
-			else										// 3 1 2
-				ra(&(*stack_a));
+			index_a++;
+			index_b++;
+			rrr(stack_a, stack_b);
 		}
-		else if (((*stack_a)->data < temp->data)
-			&& ((*stack_a)->data < temp->next->data))	// 1 3 2
+		else if (index_a <= count_nodes(*stack_a))
 		{
-			sa(stack_a);
-			ra(&(*stack_a));
+			index_a++;
+			rra(stack_a);
 		}
-		else											// 2 x x
+		else if (index_b <= count_nodes(*stack_b))
 		{
-			if (((*stack_a)->data > temp->data)			// 2 1 3
-				&& ((*stack_a)->data < temp->next->data))
-				sa(&(*stack_a));
-			else										// 2 3 1
-				rra(&(*stack_a));
+			index_b++;
+			rrb(stack_b);
 		}
 	}
 }
 
-void	sort_two(t_node **stack_a)
+void	simultan_rr(t_node **stack_a, t_node **stack_b,
+			t_node *node_to_push, int i_of_final_dest_b)
 {
-	if ((*stack_a)->data > (*stack_a)->next->data)
-		sa(&(*stack_a));
+	int	index_a;
+	int	index_b;
+
+	index_a = get_position_index(&node_to_push, stack_a);
+	index_b = i_of_final_dest_b;
+	while (index_a > 1 || index_b > 1)
+	{
+		if (index_a > 1 && index_b > 1)
+		{
+			index_a--;
+			index_b--;
+			rr(stack_a, stack_b);
+		}
+		else if (index_a > 1)
+		{
+			index_a--;
+			ra(stack_a);
+		}
+		else if (index_b > 1)
+		{
+			index_b--;
+			rb(stack_b);
+		}
+	}
 }
 
-int	check_if_sorted(t_node **stack_a) // Returns 1 if NOT sorted, else returns 0
+void	sort_stack_b(t_node **stack_a, t_node **stack_b)
 {
-	t_node	*temp;
-	t_node	*temp2;
+	int	biggest_index;
+	int	count;
 
-	temp = *stack_a;
-	temp2 = temp->next;
-	while (temp && temp2)
+	biggest_index = find_biggest(stack_b);
+	count = count_nodes(*stack_b);
+	if (biggest_index >= (count / 2))
 	{
-		if (temp->data > temp2->data)
-			return (1);
-		temp = temp->next;
-		temp2 = temp2->next;
+		while (biggest_index != 1)
+		{
+			rrb(stack_b);
+			biggest_index = find_biggest(stack_b);
+		}
 	}
-	return (0);
-}
-
-int	count_nodes(t_node *stack)
-{
-	t_node	*temp;
-	int		i;
-
-	temp = stack;
-	i = 0;
-	while (temp != NULL)
+	else
 	{
-		temp = temp->next;
-		i++;
+		while (biggest_index != 1)
+		{
+			rb(stack_b);
+			biggest_index = find_biggest(stack_b);
+		}
 	}
-	return (i);
+	push_back_to_a(stack_a, stack_b);
 }
