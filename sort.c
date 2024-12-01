@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 15:09:52 by jpluta            #+#    #+#             */
-/*   Updated: 2024/11/30 18:47:23 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/12/01 13:28:47 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,14 @@ void	rotate_and_push(t_node **stack_a, t_node **stack_b,
 
 	index_a = get_position_index(&node_to_push, stack_a);
 	index_b = i_of_final_dest_b;
-	printf("\nBEFORE ROTATIONS index_a = %d, index_b = %d", index_a, index_b);
+	// printf("\nBEFORE ROTATIONS index_a = %d, index_b = %d", index_a, index_b);
 	// printf("\nBEFORE");
 	// printf("\nindex_a = %d, index_b = %d, cost = %d", index_a, index_b, (*stack_a)->cost);
 	// printf("\ncount_a = %d, count_b = %d", count_nodes(*stack_a), count_nodes(*stack_b));
 	// printf("\n==============================================");
-	if (index_a > (count_nodes(*stack_a) / 2) || index_b > (count_nodes(*stack_b) / 2))
+	if (((count_nodes(*stack_a) + count_nodes(*stack_b)) / 2) < ((index_a + index_b) / 2))
 		reverse_rotate_and_push(stack_a, stack_b, node_to_push, i_of_final_dest_b);
-	else if (index_a <= (count_nodes(*stack_a) / 2) || index_b <= (count_nodes(*stack_b) / 2))
+	else
 		simultan_rr(stack_a, stack_b, node_to_push, i_of_final_dest_b);
 	// if (index_a != 0)
 	// 	rotate_stack_a(&node_to_push, stack_a);
@@ -142,7 +142,7 @@ void	reverse_rotate_and_push(t_node **stack_a, t_node **stack_b,
 			rrb(stack_b);
 		}
 	}
-	printf("\nAFTER RRR ROTATIONS index_a = %d, index_b = %d", index_a, index_b);
+	// printf("\nAFTER RRR ROTATIONS index_a = %d, index_b = %d", index_a, index_b);
 }
 
 void	simultan_rr(t_node **stack_a, t_node **stack_b,
@@ -172,7 +172,7 @@ void	simultan_rr(t_node **stack_a, t_node **stack_b,
 			rb(stack_b);
 		}
 	}
-	printf("\nAFTER RR ROTATIONS index_a = %d, index_b = %d", index_a, index_b);
+	// printf("\nAFTER RR ROTATIONS index_a = %d, index_b = %d", index_a, index_b);
 }
 
 void	push_back_to_a(t_node **stack_a, t_node **stack_b)
@@ -303,7 +303,7 @@ void	sort_stack_b(t_node **stack_a, t_node **stack_b)
 	count = count_nodes(*stack_b);
 	if (biggest_index >= (count / 2))
 	{
-		while (biggest_index != 0)
+		while (biggest_index != 1)
 		{
 			rrb(stack_b);
 			biggest_index = find_biggest(stack_b);
@@ -311,17 +311,17 @@ void	sort_stack_b(t_node **stack_a, t_node **stack_b)
 	}
 	else
 	{
-		while (biggest_index != 0)
+		while (biggest_index != 1)
 		{
 			rb(stack_b);
 			biggest_index = find_biggest(stack_b);
 		}
 	}
-	// TESTING
-	printf("\nAT THE END OF SORTING_______________________");
-	print_stack(*stack_a);
-	print_stack(*stack_b);
-	// TESTING
+	// // TESTING
+	// printf("\nAT THE END OF SORTING_______________________");
+	// print_stack(*stack_a);
+	// print_stack(*stack_b);
+	// // TESTING
 	push_back_to_a(stack_a, stack_b);
 }
 
@@ -351,8 +351,8 @@ void	find_couple_byrr(t_node **stack_a, t_node **stack_b)
 	int		index_of_a;
 
 	temp_a = *stack_a;
-	index_of_b = 0;
-	index_of_a = 0;
+	index_of_b = -1;
+	index_of_a = 1;
 	while (temp_a)
 	{
 		temp_b = *stack_b;
@@ -432,34 +432,13 @@ void	make_cost(t_node **temp_a, int index_of_a, int index_of_b,
 	cost_b = 0;
 	stack_a_count = count_nodes(*stack_a);
 	stack_b_count = count_nodes(*stack_b);
-	if (index_of_a <= (stack_a_count / 2))
-		cost_a = index_of_a;
+	if (((stack_a_count + stack_b_count) / 2) > ((index_of_a + index_of_b) / 2))
+		(*temp_a)->cost = index_of_a > index_of_b ? index_of_a : index_of_b;
 	else
 	{
-		cost_a = (stack_a_count - index_of_a) * (-1);
-		if (stack_a_count % 2 == 1)
-			cost_b -= 1;
-	}
-	if (index_of_b <= (stack_b_count / 2))
-		cost_b = index_of_b;
-	else
-	{
-		cost_b = (stack_b_count - index_of_b) * (-1);
-		if (stack_b_count % 2 == 1)
-			cost_b -= 1;
-	}
-	if (cost_a >= 0 && cost_b >= 0)
-		(*temp_a)->cost = (cost_a > cost_b) ? cost_a : cost_b;
-	else if (cost_a >= 0 && cost_b < 0)
-		(*temp_a)->cost = cost_a + (cost_b * (-1));
-	else if (cost_b >= 0 && cost_a < 0)
-		(*temp_a)->cost = cost_b + (cost_a * (-1));
-	else
-	{
-		if (stack_a_count > stack_b_count)
-			(*temp_a)->cost = stack_b_count - (cost_b * (-1));
-		else
-			(*temp_a)->cost = stack_a_count - (cost_a * (-1));
+		cost_a = stack_a_count - index_of_a;
+		cost_b = stack_b_count - index_of_b;
+		(*temp_a)->cost = cost_a > cost_b ? cost_a : cost_b;
 	}
 }
 
@@ -467,11 +446,9 @@ int	find_biggest(t_node **stack_b)
 {
 	t_node	*temp_b;
 	int		i;
-	int		position_i;
 
 	temp_b = *stack_b;
 	i = temp_b->index;
-	position_i = 0;
 	if (*stack_b == NULL)
 		return (-1);
 	while (temp_b)
@@ -482,11 +459,8 @@ int	find_biggest(t_node **stack_b)
 	}
 	temp_b = *stack_b;
 	while (temp_b->index != i)
-	{
 		temp_b = temp_b->next;
-		position_i++;
-	}
-	return (position_i);
+	return (get_position_index(&temp_b, stack_b));
 }
 
 // Return index of actuall position in stack

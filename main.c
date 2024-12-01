@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 18:45:03 by jozefpluta        #+#    #+#             */
-/*   Updated: 2024/11/30 15:04:47 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/12/01 13:31:36 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,19 @@ int	main(int argc, char **argv) // .. Main function >P
 
 	add_indexes(&stack_a);
 
-	// TESTING
-	printf("\nBEFORE_______________________");
-	print_stack(stack_a);
-	print_stack(stack_b);
-	// TESTING
+	// // TESTING
+	// printf("\nBEFORE_______________________");
+	// print_stack(stack_a);
+	// print_stack(stack_b);
+	// // TESTING
 
 	sort(&stack_a, &stack_b);
 
-	// TESTING
-	printf("\nAFTER_________________________");
-	print_stack(stack_a);
-	print_stack(stack_b);
-	// TESTING
+	// // TESTING
+	// printf("\nAFTER_________________________");
+	// print_stack(stack_a);
+	// print_stack(stack_b);
+	// // TESTING
 
 	free_list(stack_a);
 	return (0);
