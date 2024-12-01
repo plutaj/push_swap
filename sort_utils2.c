@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 13:52:26 by jpluta            #+#    #+#             */
-/*   Updated: 2024/12/01 13:53:10 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/12/01 15:30:16 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,23 @@
 void	find_couple_byrr(t_node **stack_a, t_node **stack_b)
 {
 	t_node	*temp_a;
-	t_node	*temp_b;
-	int		index_of_b;
 	int		index_of_a;
 
 	temp_a = *stack_a;
-	index_of_b = -1;
 	index_of_a = 1;
 	while (temp_a)
 	{
-		temp_b = *stack_b;
-		index_of_b = -1;
-		index_of_b = find_pair_stack_b(temp_a, temp_b, stack_b);
-		make_cost(&temp_a, index_of_a, index_of_b, stack_a, stack_b);
+		make_cost(&temp_a, index_of_a, stack_a, stack_b);
 		temp_a = temp_a->next;
 		index_of_a++;
 	}
 }
 
-int	find_pair_stack_b(t_node *temp_a, t_node *temp_b, t_node **stack_b)
+int	find_pair_stack_b(t_node *temp_a, t_node **stack_b)
 {
 	int		highest_lower_i;
 	int		index_of_b;
+	t_node	*temp_b;
 
 	highest_lower_i = -1;
 	index_of_b = -1;
@@ -59,18 +54,20 @@ int	find_pair_stack_b(t_node *temp_a, t_node *temp_b, t_node **stack_b)
 	return (index_of_b);
 }
 
-void	make_cost(t_node **temp_a, int index_of_a, int index_of_b,
+void	make_cost(t_node **temp_a, int index_of_a,
 			t_node **stack_a, t_node **stack_b)
 {
 	int	cost_a;
 	int	cost_b;
 	int	stack_a_count;
 	int	stack_b_count;
+	int	index_of_b;
 
 	cost_a = 0;
 	cost_b = 0;
 	stack_a_count = count_nodes(*stack_a);
 	stack_b_count = count_nodes(*stack_b);
+	index_of_b = find_pair_stack_b(*temp_a, stack_b);
 	if (((stack_a_count + stack_b_count) / 2) > ((index_of_a + index_of_b) / 2))
 		(*temp_a)->cost = index_of_a > index_of_b ? index_of_a : index_of_b;
 	else

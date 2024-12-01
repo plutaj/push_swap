@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 15:09:52 by jpluta            #+#    #+#             */
-/*   Updated: 2024/12/01 13:58:47 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/12/01 16:01:41 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	sort(t_node **stack_a, t_node **stack_b)
 	{
 		find_couple_byrr(stack_a, stack_b);
 		node_to_push = find_cheapest(stack_a);
-		i_of_final_dest_b = find_pair_stack_b(node_to_push, temp_b, stack_b);
+		i_of_final_dest_b = find_pair_stack_b(node_to_push, stack_b);
 		rotate_and_push(stack_a, stack_b, node_to_push, i_of_final_dest_b);
 	}
 	sort_three(stack_a);
@@ -44,7 +44,7 @@ void	rotate_and_push(t_node **stack_a, t_node **stack_b,
 
 	index_a = get_position_index(&node_to_push, stack_a);
 	index_b = i_of_final_dest_b;
-	if (((count_nodes(*stack_a) + count_nodes(*stack_b)) / 2) < ((index_a + index_b) / 2))
+	if (((count_nodes(*stack_a) + count_nodes(*stack_b)) / 2) < (index_a + index_b)) // vymazal som (index_a + index_b) / 2)
 		reverse_rotate_and_push(stack_a, stack_b, node_to_push, i_of_final_dest_b);
 	else
 		simultan_rr(stack_a, stack_b, node_to_push, i_of_final_dest_b);
@@ -54,6 +54,7 @@ void	rotate_and_push(t_node **stack_a, t_node **stack_b,
 void	reverse_rotate_and_push(t_node **stack_a, t_node **stack_b,
 			t_node *node_to_push, int i_of_final_dest_b)
 {
+	printf("\nREVERS ROTATE EXECUTED");
 	int	index_a;
 	int	index_b;
 
