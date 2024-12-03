@@ -13,6 +13,8 @@
 #include "push_swap.h"
 
 // check no argument situation!!! before finishing priject
+// vagrind checks, maybe after error, print previous allocated nodes
+// split frees
 
 int	main(int argc, char **argv)
 {
