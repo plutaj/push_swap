@@ -12,6 +12,8 @@
 
 #include "push_swap.h"
 
+// check no argument situation!!! before finishing priject
+
 int	main(int argc, char **argv)
 {
 	t_node	*stack_a;
