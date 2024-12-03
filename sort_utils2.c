@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_utils2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 13:52:26 by jpluta            #+#    #+#             */
-/*   Updated: 2024/12/01 15:30:16 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/12/03 19:41:21 by jozefpluta       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,15 @@ void	make_cost(t_node **temp_a, int index_of_a,
 	stack_a_count = count_nodes(*stack_a);
 	stack_b_count = count_nodes(*stack_b);
 	index_of_b = find_pair_stack_b(*temp_a, stack_b);
-	if (((stack_a_count + stack_b_count) / 2) > ((index_of_a + index_of_b) / 2))
-		(*temp_a)->cost = index_of_a > index_of_b ? index_of_a : index_of_b;
-	else
+	if (((count_nodes(*stack_a) + count_nodes(*stack_b)) / 2) < (index_of_a + index_of_b))
 	{
 		cost_a = stack_a_count - index_of_a;
 		cost_b = stack_b_count - index_of_b;
 		(*temp_a)->cost = cost_a > cost_b ? cost_a : cost_b;
+	}
+	else
+	{
+		(*temp_a)->cost = index_of_a > index_of_b ? index_of_a : index_of_b;
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 15:09:52 by jpluta            #+#    #+#             */
-/*   Updated: 2024/12/01 16:01:41 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/12/03 19:29:09 by jozefpluta       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@ void	sort(t_node **stack_a, t_node **stack_b)
 {
 	t_node	*node_to_push;
 	int		i_of_final_dest_b;
-	t_node	*temp_b;
 
 	i_of_final_dest_b = 0;
-	temp_b = *stack_b;
 	if (check_if_sorted(stack_a) == 0)
 		return ;
 	edge_cases(stack_a);
@@ -54,7 +52,6 @@ void	rotate_and_push(t_node **stack_a, t_node **stack_b,
 void	reverse_rotate_and_push(t_node **stack_a, t_node **stack_b,
 			t_node *node_to_push, int i_of_final_dest_b)
 {
-	printf("\nREVERS ROTATE EXECUTED");
 	int	index_a;
 	int	index_b;
 
