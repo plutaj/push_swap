@@ -6,15 +6,11 @@
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 18:45:03 by jozefpluta        #+#    #+#             */
-/*   Updated: 2024/12/04 15:06:29 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/12/04 18:04:18 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// check no argument situation!!! before finishing priject
-// vagrind checks, maybe after error, print previous allocated nodes
-// split frees
 
 int	main(int argc, char **argv)
 {
@@ -26,7 +22,7 @@ int	main(int argc, char **argv)
 	stack_b = NULL;
 	i = 1;
 	if (argc == 1)
-		print_error();
+		return (0);
 	else if (argc == 2)
 		stack_from_string(argv, &stack_a);
 	else
@@ -45,8 +41,10 @@ int	main(int argc, char **argv)
 }
 
 // Print error
-void	print_error(void)
+void	print_error(t_node **stack_a)
 {
+	if (stack_a)
+		free_list(*stack_a);
 	write(2, "Error\n", 6);
 	exit(1);
 }

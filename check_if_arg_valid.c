@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_arg.c                                        :+:      :+:    :+:   */
+/*   check_if_arg_valid.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 15:38:27 by jpluta            #+#    #+#             */
-/*   Updated: 2024/12/01 13:43:23 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/12/04 17:46:34 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 // Check if argument is valid (not a char etc)
-void	is_arg_valid(char *argv)
+int	is_arg_valid(char *argv)
 {
 	int			i;
 	long long	a;
@@ -27,12 +27,13 @@ void	is_arg_valid(char *argv)
 		else if (argv[i] == ' ')
 			i++;
 		else if (ft_isdigit(argv[i]) == 0)
-			print_error();
+			return (-1);
 		i++;
 	}
 	a = ft_atol(argv);
 	if (a > INT_MAX || a < INT_MIN)
-		print_error();
+		return (-1);
+	return (0);
 }
 
 // Check for each num 1x in stack
@@ -49,10 +50,7 @@ void	is_num_double(t_node **stack_a)
 		while (temp != NULL)
 		{
 			if (temp->data == current->data)
-			{
-				free_list(*stack_a);
-				print_error();
-			}
+				print_error(stack_a);
 			temp = temp->next;
 		}
 		temp = NULL;
@@ -85,7 +83,7 @@ int	single_arg_case(t_node **stack_a)
 {
 	if ((*stack_a)->next == NULL)
 	{
-		free_list(&(**stack_a));
+		free_list(*stack_a);
 		return (1);
 	}
 	return (0);

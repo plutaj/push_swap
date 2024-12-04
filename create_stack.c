@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 15:42:15 by jpluta            #+#    #+#             */
-/*   Updated: 2024/12/01 13:43:36 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/12/04 17:47:03 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,18 @@ void	stack_from_string(char **argv, t_node **stack_a)
 	i = 0;
 	numbers = ft_split(argv[1], ' ');
 	if (!numbers)
-		print_error();
+		print_error(stack_a);
 	while (numbers[i] != NULL)
 	{
-		is_arg_valid(numbers[i]);
+		if (is_arg_valid(numbers[i]) == -1)
+		{
+			free(numbers[i]);
+			free(numbers);
+			print_error(stack_a);
+		}
 		stack_from_args(ft_atoi(numbers[i]), &(*stack_a));
+		free(numbers[i]);
 		i++;
 	}
+	free(numbers);
 }
